@@ -6,7 +6,6 @@ from flask import flash
 import pprint
 import os
 import sys
-import pymongo
 
 username_list=[]
 user_follow=[]
@@ -71,27 +70,6 @@ def authorized():
 
 @app.route('/page1', methods=['GET','POST'])
 def renderPage1():
-	connection_string = os.environ["MONGO_CONNECTION_STRING"]
-	db_name = os.environ["MONGO_DBNAME"]
-   
-	client = pymongo.MongoClient(connection_string)
-	db = client[db_name]
-	collection = db['messages']
-	
-	if 'user_data' in session:
-		
-		if 'txt' in request.form:
-				message=request.form['txt']
-				post = {'User':session['user_data']['login'], 'Message':message}
-				messages = db.messages
-				post_id = messages.insert_one(post).inserted_id
-				post_id
-		messages = db.messages
-		user_post=''
-		for post in messages.find():
-			user_post = Markup('<br>') + post['User'] + ':' + '\n' + post['Message'] + Markup('<br>') + user_post
-		print("")
-		
 	return render_template('page1.html',dump_user_data=user_post)
 
 
