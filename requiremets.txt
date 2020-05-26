@@ -6,5 +6,4 @@ wheel
 gunicorn
 bson
 Flask-OAuthlib
-Flask-pymongo
 dnspython
