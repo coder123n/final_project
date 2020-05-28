@@ -73,11 +73,11 @@ def renderPage1():
 	return render_template('france1.html',dump_user_data=user_post)
 
 @app.route('/japan2', methods=['GET','POST'])
-def renderPage1():
+def renderPage2():
 	return render_template('japan2.html',dump_user_data=user_post)
 
 @app.route('/zimbabwe3', methods=['GET','POST'])
-def renderPage1():
+def renderPage3():
 	return render_template('zimbabwe3.html',dump_user_data=user_post)
 
 
