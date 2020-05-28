@@ -1,5 +1,6 @@
 body{
 	background-color: rgb(212, 247, 252);
+	p.double {border-style: double;}
 }
 
 .btn {
