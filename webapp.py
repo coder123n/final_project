@@ -71,15 +71,24 @@ def authorized():
 
 @app.route('/france1', methods=['GET','POST'])
 def renderPage1():
-	return render_template('france1.html')
+	if 'github_token' in session:
+		return render_template('france1.html')
+	else:
+		return render_template('home.html')
 
 @app.route('/japan2', methods=['GET','POST'])
 def renderPage2():
-	return render_template('japan2.html')
+	if 'github_token' in session:
+		return render_template('japan2.html')
+	else:
+		return render_template('home.html')
 
 @app.route('/zimbabwe3', methods=['GET','POST'])
 def renderPage3():
-	return render_template('zimbabwe3.html')
+	if 'github_token' in session:
+		return render_template('zimbabwe3.html')
+	else:
+		return render_template('home.html')
 
 
 @github.tokengetter
