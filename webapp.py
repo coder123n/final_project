@@ -45,27 +45,28 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return render_template('message.html', message='You were logged out')
+    flash('You were logged out.')
+    return render_template('home.html')
 
 @app.route('/login/authorized')
 def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
-        message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
+        flash('Error. Access denied.')      
     else:
         try:
             #save user data and set log in message
             session['github_token'] = (resp['access_token'], '')
             session['user_data'] = github.get('user').data
-            message = 'You were successfully logged in as ' + session['user_data']['login'] + '.'
+            flash('You were successfully logged in!')
 
         except Exception as inst:
             #clear the session and give error message
             session.clear()
             print(inst)
-            message = 'Unable to login. Please try again.'
-    return render_template('message.html', message=message)
+            flash('Unable to login. Please try again.')
+    return render_template('home.html')
 
 
 @app.route('/france1', methods=['GET','POST'])
