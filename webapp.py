@@ -71,7 +71,6 @@ def authorized():
 
 @app.route('/france1', methods=['GET','POST'])
 def renderPage1():
-	if session['github_token'] = (resp['access_token'], ''):
 	return render_template('france1.html')
 
 @app.route('/japan2', methods=['GET','POST'])
